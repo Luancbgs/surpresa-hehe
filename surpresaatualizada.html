@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Para Você ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        background: linear-gradient(135deg, #ff4d6d, #ff758f);
+        overflow: hidden;
+        font-family: 'Arial', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+    }
+
+    #container {
+        z-index: 2;
+    }
+
+    button {
+        padding: 15px 30px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        background: white;
+        color: #ff4d6d;
+        cursor: pointer;
+        font-weight: bold;
+        transition: transform 0.2s;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+    }
+
+    #mensagem {
+        margin-top: 20px;
+        font-size: 22px;
+        display: none;
+        line-height: 1.6;
+    }
+
+    .heart {
+        position: fixed;
+        bottom: -10px;
+        font-size: 24px;
+        animation: subir 6s linear infinite;
+        opacity: 0.8;
+    }
+
+    @keyframes subir {
+        from { transform: translateY(0); opacity: 1; }
+        to { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    #video {
+        display: none;
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        width: 300px;
+        height: 169px;
+        border: 3px solid white;
+        border-radius: 10px;
+    }
+</style>
+</head>
+
+<body>
+
+<div id="container">
+    <button onclick="iniciarSurpresa()">💖 Clique aqui 💖</button>
+    <div id="mensagem"></div>
+</div>
+
+<div id="video">
+    <iframe width="300" height="169" src="https://www.youtube.com/embed/3jL4S4X97sQ?autoplay=1&mute=0" 
+    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+
+<script>
+const texto = [
+    "Oi meu amor… ❤️",
+    "Eu fiz isso pensando em você",
+    "Você é a minha luz ✨",
+    "Os seus olhos são o lugar onde eu me perco 😍",
+    "E esse seu cabelo vermelho perfeito…",
+    "me faz te amar mais a cada dia ❤️",
+    "Eu te amo. Hoje, amanhã e sempre 💘"
+];
+
+let i = 0;
+
+function iniciarSurpresa() {
+    document.querySelector("button").style.display = "none";
+    document.getElementById("video").style.display = "block";
+    document.getElementById("mensagem").style.display = "block";
+    escrever();
+    setInterval(criarCoracao, 300);
+}
+
+function escrever() {
+    if (i < texto.length) {
+        document.getElementById("mensagem").innerHTML += texto[i] + "<br><br>";
+        i++;
+        setTimeout(escrever, 1800);
+    }
+}
+
+function criarCoracao() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}
+</script>
+
+</body>
+</html>
